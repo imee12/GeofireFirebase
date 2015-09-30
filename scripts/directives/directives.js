@@ -10,7 +10,9 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
         self.setMarker = function(markerLocation){
             var location = markerLocation.location;
             var key = markerLocation.key;
-
+            var content = markerLocation.g;
+            var text = markerLocation.text;
+          //  console.log(markerLocation);
              if (location.length==0)
                  return;
 
@@ -21,7 +23,13 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
                 map: self.map
             });
 
-      var infoWindowContent = '<h3>stuff</h3>';
+      // var infoWindowContent = '<h3>' + markerLocation.location +  markerLocation.key + '</h3>';
+      var infoWindowContent =
+      "<form action='http://maps.google.com/maps' method='get' target='_blank'>Enter your starting address:" +
+        "<input type='text' name='saddr' />" +
+       "<input type='text' name='daddr' value=" + markerLocation.location +" />" +
+       "<input class ='direct' type='submit' value='Directions' />" +
+       "</form>"
       var infoWindow = new google.maps.InfoWindow({
               content: infoWindowContent
           });
@@ -56,6 +64,7 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
                 var item = {key:key, location:location};
                 console.log('key entered on directive controller ' + key);
                 self.setMarker(item);
+              //  console.log(item);
 
             });
         }

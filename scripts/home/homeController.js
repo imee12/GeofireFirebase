@@ -11,7 +11,8 @@
         vm.includeLocation = true;
         vm.location = {};
         vm.message = "Hello from Home";
-        vm.infoWindow = "stuff";
+      //  vm.infoWindow = "test stuff";
+    
 
         init();
 
@@ -24,7 +25,7 @@
             vm.message = dataService.getFirebaseRoot().toString();
 
             vm.foodTrucks = dataService.getData();
-            vm.infoWindow = "stuff";
+            vm.infoWindow = "test stuff2";
         }
 
         vm.save = function(){
