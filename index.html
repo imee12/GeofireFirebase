@@ -4,6 +4,13 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6U2ExB8yLDc7RiGPYK3C3yIzDPpyFJE0&sensor=false"></script>
         <script src="scripts/vendor/angular.js"></script>
         <script src="scripts/vendor/angular-ui-router.js"></script>
+        <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+        <script src="bower_components/momentjs/min/moment.min.js"></script>
+        <script src="bower_components/momentjs/min/locales.min.js"></script>
+        <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+        <script src="bower_components/angular-timer/dist/assets/js/angular-timer-bower.js"></script>
+      <!--   <script src="bower_components/angular-timer/dist/assets/js/angular-timer-all.min.js"></script> -->
+
         <!-- Firebase -->
         <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
         <!-- AngularFire -->
@@ -13,22 +20,22 @@
         <script src="https://cdn.firebase.com/libs/geofire/3.0.0/geofire.min.js"></script>
 
         <script src="scripts/app.js"></script>
-        <script src="scripts/services/services.js"></script>        
-        <script src="scripts/directives/directives.js"></script>        
-        <script src="scripts/home/homeController.js"></script>        
-    
+        <script src="scripts/services/services.js"></script>
+        <script src="scripts/directives/directives.js"></script>
+        <script src="scripts/home/homeController.js"></script>
+
     </head>
 
     <body ng-app='app'>
-       
+
         <div class="container">
             <a ui-sref=".home">Home</a>
-        
+
             <!-- injectable views -->
             <div ui-view></div>
         </div>
-        
-        
+
+
     </body>
 
 </html>

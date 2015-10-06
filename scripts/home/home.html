@@ -38,7 +38,40 @@
             <li class="text-danger">{{i.address}}</li>
         </ul>
     </div>
+
+    <section id="countdown-timer">
+        <h3>
+            Countdown Timer</h3>
+
+        <div class="bs-docs-example">
+            <p>
+                The countdown timer <code ng-non-bindable="">&lt;timer interval=&quot;1000&quot; countdown=&quot;100&quot;&gt;{{countdown}}&lt;/timer&gt;</code>
+                will start its countdown from 100 until it reaches 0 by ticking every second</p>
+
+            <h3>
+                <timer countdown="100" interval="1000">{{countdown}}</timer>
+            </h3>
+            <button class="btn" onclick="addCDSeconds('countdown-timer', 10)" type="button">Add 10 Seconds</button>
+        </div>
+    </section>
+<!--   <timer end-time="1444104000000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer> -->
+    <timer end-time="1444104000000"> {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
+  <!-- <timer countdown="10041" max-time-unit="'minute'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
+  <timer countdown="3" interval="1000" finish-callback="callbackTimer.finished()">{{seconds}} second{{secondsS}}</timer> -->
+  <!-- <timer countdown="10041" max-time-unit="'minute'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer> -->
+
+<!--  <div ng-controller="home">
+ <timer countdown="100" interval="1000" class="ng-binding ng-isolate-scope"><span class="ng-binding ng-scope">0</span></timer>
+ <button class="btn" onclick="addCDSeconds('countdown-timer', 10)" type="button">Add 10 Seconds</button>
+</div> -->
+ <!--   <div>
+        <h1>AngularJS - Add Countdown Seconds Example</h1>
+        <h3><timer countdown="10" interval="1000">{{countdown}}</timer></h3>
+        <button ng-click="add5Seconds()">Add 5 Seconds</button>
+    </div> -->
+
     <div class="col-xs-12 col-md-6">
-        <map-directive></map-directive>
+
+   <map-directive></map-directive>
     </div>
 </div>

@@ -5,14 +5,18 @@
     angular.module('app').controller('home', home);
 
 
-    function home(geoLocationService, dataService){
+    function home(geoLocationService, dataService, $scope){
+
+      $scope.add5Seconds = function () {
+                    $scope.$broadcast('timer-add-cd-seconds', 5);
+                }
 
         var vm =this;
         vm.includeLocation = true;
         vm.location = {};
         vm.message = "Hello from Home";
       //  vm.infoWindow = "test stuff";
-    
+
 
         init();
 
@@ -20,13 +24,15 @@
 
             geoLocationService.getLocation().then(function(result){
                 vm.location = result;
-            });
+                console.log(result);
+});
 
             vm.message = dataService.getFirebaseRoot().toString();
 
             vm.foodTrucks = dataService.getData();
-            vm.infoWindow = "test stuff2";
-        }
+            console.log(vm.foodTrucks);
+
+}
 
         vm.save = function(){
 

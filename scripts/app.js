@@ -2,14 +2,14 @@
 (function () {
     'use strict';
 
-    var app = angular.module('app', ['ui.router', 'firebase']);
+    var app = angular.module('app', ['ui.router', 'firebase', 'timer']);
 
     app.config(function($stateProvider, $urlRouterProvider) {
-    
+
     $urlRouterProvider.otherwise('/home');
-    
+
     $stateProvider
-        
+
         // home <- starting state
         .state('home', {
             url: '/home',
@@ -17,7 +17,7 @@
             controller: 'home as vm'
         })
     ;
-        
+
 });
 
 

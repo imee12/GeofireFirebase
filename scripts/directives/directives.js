@@ -26,7 +26,7 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
       // var infoWindowContent = '<h3>' + markerLocation.location +  markerLocation.key + '</h3>';
       var infoWindowContent =
       "<form action='http://maps.google.com/maps' method='get' target='_blank'>Enter your starting address:" +
-        "<input type='text' name='saddr' />" +
+        "<input type='text' name='saddr' value />" +
        "<input type='text' name='daddr' value=" + markerLocation.location +" />" +
        "<input class ='direct' type='submit' value='Directions' />" +
        "</form>"
