@@ -7,15 +7,15 @@
 
     function home(geoLocationService, dataService, $scope){
 
-      $scope.add5Seconds = function () {
-                    $scope.$broadcast('timer-add-cd-seconds', 5);
-                }
+ var firebase = new Firebase("https://meterdpractice.firebaseio.com");
 
         var vm =this;
         vm.includeLocation = true;
         vm.location = {};
         vm.message = "Hello from Home";
-      //  vm.infoWindow = "test stuff";
+        vm.time = 1;
+        vm.cost = 10;
+        console.log(vm);
 
 
         init();
@@ -32,7 +32,10 @@
             vm.foodTrucks = dataService.getData();
             console.log(vm.foodTrucks);
 
+
 }
+
+
 
         vm.save = function(){
 
@@ -40,5 +43,28 @@
                                 {latitude: vm.location.latitude, longitude: vm.location.longitude});
 
         }
+
+        vm.edit = function(){
+
+          console.log("controller edit");
+      //    console.log(index);
+
+
+
+        //  dataService.editData(vm);
+        //  dataService.editData({name: vm.name|| '', text: vm.text || '', address: vm.location.address || ''});
+
+
+        }
+
+        vm.delete = function(i) {
+          console.log("controller delete");
+
+        console.log(i);
+        dataService.deleteData(i);
+        }
+
     }
+
+
 })();

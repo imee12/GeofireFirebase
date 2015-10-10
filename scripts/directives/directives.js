@@ -6,13 +6,17 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
 
         var self = this;
         self.map;
+        console.log(this);
+        console.log(self.map);
 
         self.setMarker = function(markerLocation){
             var location = markerLocation.location;
             var key = markerLocation.key;
             var content = markerLocation.g;
             var text = markerLocation.text;
-          //  console.log(markerLocation);
+            var time = markerLocation.time;
+      //    console.log(markerLocation);
+
              if (location.length==0)
                  return;
 
@@ -25,8 +29,10 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
 
       // var infoWindowContent = '<h3>' + markerLocation.location +  markerLocation.key + '</h3>';
       var infoWindowContent =
-      "<form action='http://maps.google.com/maps' method='get' target='_blank'>Enter your starting address:" +
-        "<input type='text' name='saddr' value />" +
+      '<h3>' + markerLocation.key + '</h3>' +
+      "<form action='http://maps.google.com/maps' method='get' target='_blank'>" +
+        // "<input type='text' name='saddr' value />" +
+      "<input type='text' name='saddr' value=" + $scope.vm.location.address +" />" +
        "<input type='text' name='daddr' value=" + markerLocation.location +" />" +
        "<input class ='direct' type='submit' value='Directions' />" +
        "</form>"
@@ -57,8 +63,9 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
 
           var geoQuery = dataService.getGeoFireNode().query({
                     center: [$scope.vm.location.latitude ,$scope.vm.location.longitude],
-                    radius: 15
+                    radius: 50
                 });
+console.log($scope.vm.location.latitude );
 
             geoQuery.on("key_entered", function(key, location) {
                 var item = {key:key, location:location};
@@ -71,9 +78,12 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
 
         self.init = function( element ) {
             self.$element = element;
-
+console.log(element);
             //only initialize map when latitude and longitude are available
-            $scope.$watch(function(){return $scope.vm.location.latitude}, initializeMap);
+          // $scope.$watch(function(){return $scope.vm.location.latitude}, initializeMap);
+            $scope.$watch(function(){return $scope.vm.location}, initializeMap);
+
+          //console.log($scope.vm.location.latitude);
 
           };
 
@@ -83,7 +93,7 @@ angular.module('app').controller('mapDirectiveController', ['$scope', 'dataServi
 angular.module('app').directive('mapDirective', mapDirective);
 
     function mapDirective(){
-
+console.log("mapDirective");
         return {
             restrict: 'E',
             controller:'mapDirectiveController',
@@ -95,6 +105,6 @@ angular.module('app').directive('mapDirective', mapDirective);
             replace: true
 
         }
-    }
+     }
 
 })();

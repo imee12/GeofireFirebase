@@ -89,7 +89,7 @@
     angular.module('app').factory('dataService', ['$firebase','$q', function($firebase,$q){
 
         // var firebaseRef= new Firebase("https://popping-torch-4767.firebaseio.com/");
-         var firebaseRef= new Firebase("https://meterdpractice.firebaseio.com/");
+        var firebaseRef= new Firebase("https://meterdpractice.firebaseio.com/");
         var geoFire = new GeoFire(firebaseRef.child("_geofire"));
 
 
@@ -98,24 +98,64 @@
 
         var getFirebaseRoot = function(){
             return firebaseRef;
+
         };
 
         var getGeoFireNode = function(){
             return geoFire;
+            console.log(geoFire);
         }
 
         var getFoodTruckNode = function(){
             return getFirebaseRoot().child("FoodTrucks");
+
         }
 
         var addData = function(data, locationData){
             // persist our data to firebase
             var ref = getFoodTruckNode();
+            console.log(data);
+        //    getFirebaseRoot().child("FoodTrucks");
+//            firebaseRef.child("FoodTrucks");
 
-            return  $firebase(ref).$push(data).then(function(childRef){
+        //     var postsRef = firebaseRef.child("posts");
+        // var newPostRef =    postsRef.push({
+        //       author: "somebody",
+        //       title: "some title"
+        //     });
+        //
+        //     var postID = newPostRef.name();
+        //     console.log(postID);
+            //
+            return $firebase(ref).$push(data).then(function(childRef){
                    addGeofireData({key: childRef.name(), latitude: locationData.latitude, longitude: locationData.longitude});
-            });
+
+                   var meterRef = new Firebase(firebaseRef + "/FoodTrucks/" + childRef.name());
+                    var key= childRef.name();
+
+                //THIS ADDS UNIQUE KEY AS AN ID///
+                $firebase(meterRef).$set({
+                  id: key,
+                  name: data.name,
+                  text: data.text,
+                  address: data.address
+                });
+
+          //        var key= childRef.name();
+
+                  //  console.log( key);
+                  // key.toString();
+                  //  console.log(key);
+              //     postsRef.update({postID: {"id": postID}});
+
+
+//return $firebase(ref).$update({"-K0CCakqxhOx0I8ApfB": { text: "newwww text3"}});
+
+          });
+
+
         };
+
 
         var addGeofireData = function(data){
             var defer = $q.defer();
@@ -134,14 +174,58 @@
             var ref = getFoodTruckNode();
             return $firebase(ref).$asArray();
 
-        }
 
+        };
+
+
+
+
+        var editData = function() {
+          console.log("edit from services");
+        //  console.log(index);
+console.log(vm);
+      //   var ref = getFoodTruckNode();
+      //
+      // firebaseRef.update({
+      //   "something/text" : "new name"
+      // });
+
+      var ref = getFoodTruckNode();
+       return $firebase(ref).$update({"-K0CCakqxhOx0I8ApfB": { text: "newwww text3"}});
+
+    //  return $firebase(ref).$update(vm);
+  //    return $firebase(ref).$update(data).then(function(childRef){
+// e({ name: { first: 'Fred', last: 'Flintstone' }});
+
+//           geoFire.get("-K-sppFI-8h6iXY62vZc").then(function(location) {
+//   if (location === null) {
+//     console.log("Provided key is not in GeoFire");
+//   }
+//   else {
+//     console.log("Provided key has a location of " + location);
+//     console.log(data.key);
+//   }
+// }, function(error) {
+//   console.log("Error: " + error);
+//  });
+
+        };
+
+        var deleteData = function(i, index, event){
+          console.log(i);
+
+ var meterRef = new Firebase(firebaseRef + "/FoodTrucks/" + i.id);
+
+        meterRef.remove();
+};
 
         var service = {
             addData : addData,
             getData: getData,
             getFirebaseRoot: getFirebaseRoot,
-            getGeoFireNode : getGeoFireNode
+            getGeoFireNode : getGeoFireNode,
+            editData: editData,
+            deleteData: deleteData
         };
 
         return service;
