@@ -30,8 +30,8 @@
 
 
                     // Adding randomization since we are all in the same location...
-                    result.latitude += (Math.random() >0.5? -Math.random()/100 : Math.random()/100  ) ;
-                    result.longitude += (Math.random() >0.5? -Math.random()/100 : Math.random()/100  ) ;
+                    // result.latitude += (Math.random() >0.5? -Math.random()/100 : Math.random()/100  ) ;
+                    // result.longitude += (Math.random() >0.5? -Math.random()/100 : Math.random()/100  ) ;
 
                     getNearbyCity(result.latitude, result.longitude).then(function(data){
                         result.address = data.data.results[1].formatted_address;
@@ -180,18 +180,21 @@
 
 
 
-        var editData = function() {
+        var editData = function(i, index, event) {
           console.log("edit from services");
         //  console.log(index);
-console.log(vm);
+console.log(i);
+var meterRef = new Firebase(firebaseRef + "/FoodTrucks/" + i.id);
+
+  meterRef.update({ text: i.text});
       //   var ref = getFoodTruckNode();
       //
       // firebaseRef.update({
       //   "something/text" : "new name"
       // });
 
-      var ref = getFoodTruckNode();
-       return $firebase(ref).$update({"-K0CCakqxhOx0I8ApfB": { text: "newwww text3"}});
+      // var ref = getFoodTruckNode();
+      //  return $firebase(ref).$update({"-K0CCakqxhOx0I8ApfB": { text: "newwww text3"}});
 
     //  return $firebase(ref).$update(vm);
   //    return $firebase(ref).$update(data).then(function(childRef){
@@ -217,6 +220,10 @@ console.log(vm);
  var meterRef = new Firebase(firebaseRef + "/FoodTrucks/" + i.id);
 
         meterRef.remove();
+        geoFire.remove(i.id).then(function(){
+          console.log("key has been removed.");
+
+        })
 };
 
         var service = {

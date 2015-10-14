@@ -16,6 +16,17 @@
                   </textarea>
               </div>
            </div>
+           <!-- <div class="col-sm-offset-2 col-sm-10">
+                          <div class="checkbox">
+                              <label>
+                                  <input type="checkbox"  ng-model='vm.includeLocation' /> Show location information
+                              </label>
+                          </div>
+                          <span ng-show="vm.includeLocation">{{vm.location.address}}</span>
+                      </div> -->
+
+
+
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
                     <label>
@@ -31,8 +42,13 @@
                     </div>
                  </div> -->
 
+          <!--  <div class="col-sm-10">
+               <textarea id="text" ng-model="vm.location.address" row="15" cols="80">
+               </textarea>
+           </div> -->
            <div class="col-sm-10">
-                <textarea id="text" ng-model="vm.location.address" row="15" cols="80">
+
+                <textarea id="text"  ng-model="vm.location.address" row="15" cols="80">
                 </textarea>
             </div>
                         </div>
@@ -67,7 +83,7 @@
               <div class="form-group">
           <textarea id="text" ng-model="i.text" row="15" cols="80" placeholder="update text">
           </textarea>
-          <button ng-click="vm.edit()" type="submit" class="btn btn-primary">Update button</button>
+          <button ng-click="vm.edit(i)" type="submit" class="btn btn-primary">Update button</button>
 
       </form>
         </form>
@@ -90,21 +106,31 @@
               <timer autostart = "false" countdown="100" interval="1000">{{countdown}}</timer>
           </h3> -->
 
-
-            <h3>
+<!-- THIS IS FOR ADDING ALREADY EXISTING METER
+ -->
+ <h3>
                 <timer autostart = "false" countdown="vm.time" interval="1000">{{hours}} hours, {{mminutes}} minute{{minutesS}}</timer>
             </h3>
       <button class="btn" ng-click="count = count + .25" ng-init="count=0" onclick="addCDSeconds('countdown-timer', 900)" type="button">Add 15 minutes</button>
-          <!--   <button class="btn" ng-click="count = count + .25" ng-init="count=0" type="button">Add 15 minutes</button> -->
+
             <span>
   Cost: ${{count}}
-</span>
-        </div>
-    </section>
-<h3>{{vm.cost}}</h3>
-    <timer countdown="15" interval="1000" finish-callback="callbackTimer.finished()">{{seconds}} second{{secondsS}}</timer>
-
-
+ </span>
+<!-------->
+    <!--     </div>
+        </section>
+    <h3>{{vm.cost}}</h3>
+        <timer countdown="15" interval="1000" finish-callback="callbackTimer.finished()">{{seconds}} second{{secondsS}}</timer>
+        <h3>
+              <timer autostart = "false" countdown="vm.time" interval="1000">{{hours}} hours, {{mminutes}} minute{{minutesS}}</timer>
+          </h3>
+          <div ng-model="something">
+    <button class="btn"  ng-click="count = count + .25; vm.addTime()" ng-init="count=0" type="button">Add 25 cents</button>
+        <button class="btn" ng-click="count = count + .25" ng-init="count=0" type="button">Add 15 minutes</button>
+          <span>
+        Cost: ${{count}}
+       </span>
+    </div> -->
 <!--   <timer end-time="1444104000000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer> -->
   <!--   <timer end-time="1444104000000"> {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer> -->
  <!-- <timer countdown="10041" interval="1000">{{hours}} hours, {{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer> -->

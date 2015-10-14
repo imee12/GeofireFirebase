@@ -7,6 +7,9 @@
 
     function home(geoLocationService, dataService, $scope){
 
+
+
+
  var firebase = new Firebase("https://meterdpractice.firebaseio.com");
 
         var vm =this;
@@ -44,14 +47,14 @@
 
         }
 
-        vm.edit = function(){
+        vm.edit = function(i){
 
           console.log("controller edit");
-      //    console.log(index);
+        console.log(i);
 
 
 
-        //  dataService.editData(vm);
+         dataService.editData(i);
         //  dataService.editData({name: vm.name|| '', text: vm.text || '', address: vm.location.address || ''});
 
 
@@ -64,7 +67,15 @@
         dataService.deleteData(i);
         }
 
+
+        vm.addTime = function() {
+
+          console.log("Time");
+          console.log();
+        }
+
     }
+
 
 
 })();
